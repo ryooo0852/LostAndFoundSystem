@@ -1,0 +1,373 @@
+import java.nio.channels.Pipe.SourceChannel;
+import java.util.Scanner;
+
+public class LostAndFoundSystem {
+
+    
+    Scanner scanner = new Scanner(System.in);
+
+// Lost item
+String lostItem = "";
+String lostName = "";
+String lostPlace = "";
+String lostStatus = "NO REPORT";
+
+// Found item
+String foundItem = "";
+String foundName = "";
+String foundPlace = "";
+String foundMarks = "";
+String foundStatus = "NO REPORT";
+
+// Claim information
+String claimantName = "";
+String claimantContact = "";
+String claimDetails = "";
+String claimStatus = "NO CLAIM REQUEST";
+
+    public static void chooseOption(int choice){
+
+        Scanner scanner = new Scanner(System.in);
+
+        switch (choice){
+
+             case 1:
+                System.out.printf("You chose to report a lost item(Option #%d).\n" , choice);
+                System.out.println("=====================================================");
+                reportItemLost(); 
+                break;
+        
+             case 2:
+                System.out.printf("You chose to report a found item(Option #%d).\n" , choice);
+                System.out.println("=====================================================");
+                reportItemFound();
+                break;
+            
+            case 3:
+                claimItem();
+                break;
+            
+            case 4:
+                seeItemStatus();
+                break;
+            
+            case 5:
+                viewSocialMediaPagesOfOrgs();
+                break;
+            
+            case 6:
+                exitSystem();
+                break;
+            
+            default:
+                System.out.println("Invalid choice. Please enter a number from 1 to 6.");
+
+     }
+        scanner.close();
+    }
+
+    public static void reportItemLost(){
+        Scanner scanner = new Scanner(System.in);
+
+        String name, college, progAndSec, lostItem,recognizedMark, placeOfItem;
+        String findLocation, numFloor, room, timeFrame;
+        String contactNum, fbName, fbLink, otherContacts, confirmInfo ;
+        
+        System.out.println("We're sorry to hear that you lost something. Please fill in the applicable details, or type \"N/A\" for fields that do not apply.");
+        System.out.println("=====================================================");
+       
+        System.out.print("Name: ");
+        name = scanner.nextLine();
+
+        System.out.print("College: ");
+        college = scanner.nextLine();
+
+        System.out.print("Program and Section: ");
+        progAndSec = scanner.nextLine();
+
+        System.out.print("Item/s lost: ");
+        lostItem = scanner.nextLine();
+        
+        System.out.println("Describe any distinguishing marks or features of the item/s (e.g., scratches, stickers, name tags, engravings): ");
+        recognizedMark = scanner.nextLine();
+
+        System.out.println("Where do you think you lost the item? List the places you visited before you noticed it was missing: ");
+        placeOfItem = scanner.nextLine();
+        System.out.println("=====================================================");
+
+        System.out.println("If your item is found, where can we usually find you?");
+        findLocation = scanner.nextLine();
+        findLocation = findLocation.toUpperCase();
+        
+            if(!findLocation.equals("N/A")){
+                if(!findLocation.equals("NA")){
+            System.out.println("If inside a building, which floor?");
+            numFloor = scanner.nextLine();
+            System.out.println("Room:");
+            room = scanner.nextLine();
+            System.out.println("During what hours can we usually find you there?");
+            timeFrame = scanner.nextLine();
+                }
+             }
+
+        System.out.println("=====================================================");
+        System.out.println("Kindly drop your contact details below.");
+        System.out.print("Contact Number:");
+        contactNum = scanner.nextLine();
+
+        System.out.print("Facebook Account Name:");
+        fbName = scanner.nextLine();
+
+        System.out.println("Facebook Account Link:");
+        fbLink = scanner.nextLine();
+
+        System.out.println("Other Contact Details:");
+        otherContacts = scanner.nextLine();
+
+        System.out.println("Thank you for your cooperation. We'll do our best to find your item and contact you once it's found.");
+        System.out.println("=====================================================");                    
+            
+    }
+
+    public static void reportItemFound(){
+         Scanner scanner = new Scanner(System.in);
+
+        String name, college, progAndSec, recognizedMark, placeOfItem, identifyOwner;
+        String founderLocation, numFloor, room, timeFrame;
+        String contactNum, fbName, fbLink, otherContacts, confirmInfo ;
+        
+        System.out.println("It seems like you've found an item. Please fill in the applicable details, or type \"N/A\" for fields that do not apply.");
+        System.out.println("=====================================================");
+       
+        System.out.print("Name: ");
+        name = scanner.nextLine();
+
+        System.out.print("College: ");
+        college = scanner.nextLine();
+
+        System.out.print("Program and Section: ");
+        progAndSec = scanner.nextLine();
+
+        System.out.print("Item/s found: ");
+        foundItem = scanner.nextLine();
+        
+        System.out.println("Describe any distinguishing marks or features of the item/s (e.g., scratches, stickers, name tags, engravings).Type N/A if there are none: ");
+        recognizedMark = scanner.nextLine();
+        foundMarks = recognizedMark;
+
+        System.out.println("What details on the item/s could identify its owner (e.g., a name, ID, initials, or contact number)? Type N/A if there are none: ");
+        identifyOwner = scanner.nextLine();
+
+
+
+        System.out.println("Where did you find the item/s?(e.g., Near Lover's Lane, Near Heroes' Park, Federizo hall 2f, at gate 2) ");
+        placeOfItem = scanner.nextLine();
+        foundPlace = placeOfItem;
+        foundStatus = "AVAILABLE";
+        System.out.println("=====================================================");
+
+        System.out.println("Where can the owner usually find you to claim the item?");
+        founderLocation = scanner.nextLine();
+        founderLocation = founderLocation.toUpperCase();
+        
+            if(!founderLocation.equals("N/A")){
+                if(!founderLocation.equals("NA")){
+            System.out.println("If inside a building, which floor?");
+            numFloor = scanner.nextLine();
+            System.out.println("Room:");
+            room = scanner.nextLine();
+            System.out.println("During what hours can we usually find you there?");
+            timeFrame = scanner.nextLine();
+                }
+             }
+
+        System.out.println("=====================================================");
+        System.out.println("Kindly drop your contact details below.");
+        System.out.print("Contact Number:");
+        contactNum = scanner.nextLine();
+
+        System.out.print("Facebook Account Name:");
+        fbName = scanner.nextLine();
+
+        System.out.println("Facebook Account Link:");
+        fbLink = scanner.nextLine();
+
+        System.out.println("Other Contact Details:");
+        otherContacts = scanner.nextLine();
+
+        System.out.println("Thank you for reporting the item you found. Your honesty helps someone get their belongings back."); 
+        System.out.println("We'll contact you if the owner needs to reach you.");
+        System.out.println("=====================================================");
+
+        
+        System.out.println("\nFound item report recorded!");
+        System.out.println("Item: " + foundItem);
+        System.out.println("Status: " + foundStatus);
+        System.out.println("Thank you for helping return someone's belongings.");
+
+    }
+
+    public static void claimItem(){
+
+  Scanner scanner = new Scanner(System.in);
+    
+    String foundItem, foundPlace, foundMarks;
+    String claimantName, claimantContact, claimDetails;
+    String answer;
+             System.out.println("\n===== CLAIM AN ITEM =====");
+
+        if (foundStatus.equals("NO REPORT")) {
+            System.out.println("No found item has been reported yet.");
+            return;
+        }
+
+        if (foundStatus.equals("CLAIM REQUESTED")) {
+            System.out.println("A claim request already exists.");
+            System.out.println("Status: " + claimStatus);
+            return;
+        }
+
+        if (foundStatus.equals("CLAIMED")) {
+            System.out.println("This item has already been marked as claimed.");
+            return;
+        }
+
+        System.out.println("Item reported found: " + foundItem);
+        System.out.println("Place found: " + foundPlace);
+        System.out.println("Distinguishing marks: " + foundMarks);
+
+        System.out.print("\nIs this the item you are claiming? (yes/no): ");
+         answer = scanner.nextLine();
+
+        if (answer.equalsIgnoreCase("yes")) {
+
+            System.out.print("Your full name: ");
+            claimantName = scanner.nextLine();
+
+            System.out.print("Your contact number: ");
+            claimantContact = scanner.nextLine();
+
+            System.out.print(
+                "Describe details that can prove ownership: "
+            );
+            claimDetails = scanner.nextLine();
+
+            foundStatus = "CLAIM REQUESTED";
+            claimStatus = "WAITING FOR STAFF VERIFICATION";
+
+            System.out.println("\nClaim request submitted!");
+            System.out.println("Claimant: " + claimantName);
+            System.out.println("Item: " + foundItem);
+            System.out.println("Status: " + claimStatus);
+            System.out.println(
+                "Please coordinate with the University Student Council."
+            );
+
+        } else if (answer.equalsIgnoreCase("no")) {
+
+            System.out.println("Claim cancelled.");
+
+        } else {
+
+            System.out.println("Invalid answer. Please enter yes or no.");
+        }
+    }
+
+
+
+    public static void seeItemStatus(){
+
+
+    System.out.println("\n===== CHECK ITEM STATUS =====");
+
+    System.out.println("\n--- Lost Item ---");
+
+    if (lostStatus.equals("NO REPORT")) {
+        System.out.println("No lost item report available.");
+    } else {
+        System.out.println("Item: " + lostItem);
+        System.out.println("Reported by: " + lostName);
+        System.out.println("Last seen: " + lostPlace);
+        System.out.println("Status: " + lostStatus);
+    }
+
+    System.out.println("\n--- Found Item ---");
+
+    if (foundStatus.equals("NO REPORT")) {
+        System.out.println("No found item report available.");
+    } else {
+        System.out.println("Item: " + foundItem);
+        System.out.println("Found at: " + foundPlace);
+        System.out.println("Reported by: " + foundName);
+        System.out.println("Status: " + foundStatus);
+    }
+
+    System.out.println("\n--- Claim Request ---");
+
+    if (claimStatus.equals("NO CLAIM REQUEST")) {
+        System.out.println("No claim request submitted.");
+    } else {
+        System.out.println("Claimant: " + claimantName);
+        System.out.println("Contact: " + claimantContact);
+        System.out.println("Details: " + claimDetails);
+        System.out.println("Status: " + claimStatus);
+    }
+
+    // Check whether the lost and found item names match
+    if (!lostStatus.equals("NO REPORT")
+            && !foundStatus.equals("NO REPORT")) {
+
+        if (lostItem.equalsIgnoreCase(foundItem)) {
+            System.out.println("\nPossible match: Item names are the same.");
+            System.out.println("Staff must verify the actual item.");
+        } else {
+            System.out.println("\nNo match based on item names.");
+        }
+    }
+}
+
+
+
+    }
+
+    public static void viewSocialMediaPagesOfOrgs(){
+
+    }
+
+    public static void exitSystem(){
+        System.out.println("Thank you and have a great day!");
+    }
+
+    public static void main(String[] args){
+
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("=====================================================");
+        System.out.println("Welcome to Bulacan State University's Lost and Found!");
+        System.out.println("=====================================================");
+        System.out.println("Enter your choice(1-6):");
+        System.out.println("1. Report a lost item");
+        System.out.println("2. Report a found item");
+        System.out.println("3. Claim item");
+        System.out.println("4. Check item status");
+        System.out.println("5. View social media pages of other Local Student Councils");
+        System.out.println("6. Exit");
+        System.out.println("=====================================================");
+        System.out.print("Your answer: ");
+        int choice = scanner.nextInt();
+        chooseOption(choice);
+      
+        
+        scanner.close();
+    }
+
+}
+
+
+
+
+
+
+
+
+
+
